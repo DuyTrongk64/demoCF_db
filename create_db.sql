@@ -24,10 +24,10 @@ CREATE TABLE "menu" (
                         "ma_loai" varchar(12) NOT NULL,
                         price int not null ,
                         dv varchar(12) not null ,
-                    constraint ma_loai_fk
-                        FOREIGN KEY ("ma_loai") REFERENCES "phanloai" ("ma_loai")
-            ON DELETE CASCADE
-          ON update CASCADE
+                        constraint ma_loai_fk
+                            FOREIGN KEY ("ma_loai") REFERENCES "phanloai" ("ma_loai")
+                                ON DELETE CASCADE
+                                ON update CASCADE
 );
 
 CREATE TABLE "tables" (
@@ -43,10 +43,11 @@ CREATE TABLE "receipt" (
                            "tbl_id" varchar(12) NOT NULL,
                            "datetime" timestamp NOT NULL,
                            "sum" int default 0,
-                               constraint  tbl_id_fk
+                           trang_thai boolean default true,
+                           constraint  tbl_id_fk
                                FOREIGN KEY ("tbl_id") REFERENCES "tables" ("tbl_id")
-                               ON DELETE CASCADE
-                               ON update CASCADE
+                                   ON DELETE CASCADE
+                                   ON update CASCADE
 );
 
 CREATE TABLE "receipt_infor" (
@@ -55,13 +56,13 @@ CREATE TABLE "receipt_infor" (
                                  "amount" int NOT NULL,
                                  "pay" int default 0,
                                  constraint rect_id_fk
-                                 FOREIGN KEY ("receipt_id") REFERENCES "receipt" ("receipt_id")
-                                     ON DELETE CASCADE
-                                     ON update CASCADE,
-                                     constraint ma_mon_fk
-                                 FOREIGN KEY ("ma_mon") REFERENCES "menu" ("ma_mon")
-                                     ON DELETE CASCADE
-                                     ON update CASCADE
+                                     FOREIGN KEY ("receipt_id") REFERENCES "receipt" ("receipt_id")
+                                         ON DELETE CASCADE
+                                         ON update CASCADE,
+                                 constraint ma_mon_fk
+                                     FOREIGN KEY ("ma_mon") REFERENCES "menu" ("ma_mon")
+                                         ON DELETE CASCADE
+                                         ON update CASCADE
 );
 
 
